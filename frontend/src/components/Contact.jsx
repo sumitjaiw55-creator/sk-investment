@@ -71,14 +71,14 @@ export default function Contact() {
               <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-amber-500/50 transition-colors">
                 <Phone className="h-8 w-8 text-amber-500 mb-4" />
                 <h3 className="text-white font-bold text-lg mb-1">Call Us</h3>
-                <p className="text-slate-400 text-sm">+91 98765 43210</p>
+                <p className="text-slate-400 text-sm">+91 9935923658</p>
                 <p className="text-slate-500 text-xs mt-1">Mon-Fri, 9am - 6pm</p>
               </div>
 
               <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-amber-500/50 transition-colors">
                 <Mail className="h-8 w-8 text-amber-500 mb-4" />
                 <h3 className="text-white font-bold text-lg mb-1">Email Us</h3>
-                <p className="text-slate-400 text-sm">contact@skinvestment.in</p>
+                <p className="text-slate-400 text-sm">contact@sk-investment.in</p>
                 <p className="text-slate-500 text-xs mt-1">24/7 Online Support</p>
               </div>
             </div>

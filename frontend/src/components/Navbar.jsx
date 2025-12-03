@@ -7,7 +7,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation(); // Pata karne ke liye ki hum kis page par hain
 
-  // Jab bhi page change ho, mobile menu band kar do aur upar scroll karo
   useEffect(() => {
     setIsOpen(false);
     window.scrollTo(0, 0);
@@ -51,12 +50,26 @@ export default function Navbar() {
             ))}
             
             {/* CTA Button */}
-            <Link
-              to="/contact"
+            
+
+              {/* <a href='https://iiflcs.in/IILLTD/DZcCV'>
+              <Link
+              // to="/contact"
               className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 px-6 py-2.5 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-amber-500/20"
             >
               Open Demat Account
-            </Link>
+              </Link>
+              </a> */}
+
+              <a
+  href="https://iiflcs.in/IILLTD/DZcCV"
+  className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 px-6 py-2.5 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-amber-500/20"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Open Demat Account
+</a>
+
           </div>
 
           {/* Mobile Menu Button */}
