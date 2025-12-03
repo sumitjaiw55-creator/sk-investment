@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation(); // Pata karne ke liye ki hum kis page par hain
-
+  const location = useLocation(); 
   useEffect(() => {
     setIsOpen(false);
     window.scrollTo(0, 0);
