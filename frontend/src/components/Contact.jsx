@@ -13,19 +13,53 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API Call
-    setTimeout(() => {
+    // Aapke active verified credentials
+    const TELEGRAM_BOT_TOKEN = "8891296748:AAF6klxeT4U9LSoyutGa8udI6RImb3hk3BQ";
+    const TELEGRAM_CHAT_ID = "5117294993";
+
+    // Clean Structured Markdown Template for Telegram
+    const textMessage = `
+🚀 *New Lead Received (SK Investment)*
+────────────────────────
+👤 *Name:* ${formData.name}
+📞 *Phone:* ${formData.phone}
+📧 *Email:* ${formData.email}
+💼 *Service Interested:* ${formData.service ? formData.service.toUpperCase() : 'Not Selected'}
+💬 *Message:* ${formData.message || 'None'}
+────────────────────────
+    `;
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: textMessage,
+          parse_mode: 'Markdown'
+        })
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Form states clearing layout back to base parameters
+        setFormData({ name: '', phone: '', email: '', service: '', message: '' });
+        
+        // Reset success UI message animation after 5 seconds
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        alert("Server communication issue. Please retry submitting form.");
+      }
+    } catch (error) {
+      console.error("Telegram API Error:", error);
+      alert("Network lag detected. Please check connection parameters.");
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', phone: '', email: '', service: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
+    }
   };
 
   const handleChange = (e) => {
@@ -36,9 +70,9 @@ export default function Contact() {
   };
 
   return (
-    <section className="pt-32 pb-20 bg-slate-950 min-h-screen relative overflow-hidden">
+    <section className="pt-32 pb-20 bg-white min-h-screen relative overflow-hidden text-slate-900">
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -48,10 +82,11 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Let's Start a <span className="text-amber-500">Conversation</span>
+          <span className="text-blue-600 font-bold tracking-wider uppercase text-sm">Get In Touch</span>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 mt-2 tracking-tight">
+            Let's Start a <span className="text-blue-600">Conversation</span>
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
             Ready to grow your wealth? Visit our office or fill out the form below. 
             Our advisors are ready to help you plan your financial future.
           </p>
@@ -68,54 +103,62 @@ export default function Contact() {
           >
             {/* Contact Cards Grid */}
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-amber-500/50 transition-colors">
-                <Phone className="h-8 w-8 text-amber-500 mb-4" />
-                <h3 className="text-white font-bold text-lg mb-1">Call Us</h3>
-                <p className="text-slate-400 text-sm">+91 9935923658</p>
-                <p className="text-slate-500 text-xs mt-1">Mon-Fri, 9am - 6pm</p>
+              <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-600/5 transition-all duration-300 group">
+                <div className="bg-blue-50 w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300">
+                  <Phone className="h-5 w-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <h3 className="text-slate-900 font-bold text-lg mb-1">Call Us</h3>
+                <p className="text-slate-600 text-sm font-semibold">+91 9935923658</p>
+                <p className="text-slate-400 text-xs mt-1 font-medium">Mon-Fri, 9am - 6pm</p>
               </div>
 
-              <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl hover:border-amber-500/50 transition-colors">
-                <Mail className="h-8 w-8 text-amber-500 mb-4" />
-                <h3 className="text-white font-bold text-lg mb-1">Email Us</h3>
-                <p className="text-slate-400 text-sm">contact@sk-investment.in</p>
-                <p className="text-slate-500 text-xs mt-1">24/7 Online Support</p>
+              <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-600/5 transition-all duration-300 group">
+                <div className="bg-blue-50 w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300">
+                  <Mail className="h-5 w-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <h3 className="text-slate-900 font-bold text-lg mb-1">Email Us</h3>
+                <p className="text-slate-600 text-sm font-semibold break-all">contact@sk-investment.in</p>
+                <p className="text-slate-400 text-xs mt-1 font-medium">24/7 Online Support</p>
               </div>
             </div>
 
             {/* Office Address & Hours */}
-            <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl">
+            <div className="bg-slate-50 border border-slate-200 p-8 rounded-2xl shadow-sm">
               <div className="flex items-start gap-4 mb-6">
-                <MapPin className="h-6 w-6 text-amber-500 shrink-0 mt-1" />
+                <div className="bg-blue-50 p-2.5 rounded-xl text-blue-600 mt-1 shadow-sm">
+                  <MapPin className="h-5 w-5 shrink-0" />
+                </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg">Head Office</h3>
-                  <p className="text-slate-400 mt-1">
-                    123, Financial Park, Bandra Kurla Complex (BKC),<br />
-                    Mumbai, Maharashtra - 400051
+                  <h3 className="text-slate-900 font-bold text-lg">Head Office</h3>
+                  <p className="text-slate-600 mt-1 text-sm font-medium leading-relaxed">
+                    Front of Hanuman Temple, Saidpur,<br />
+                    Ghazipur, Uttar Pradesh - 221115
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-4 pt-6 border-t border-slate-800">
-                <Clock className="h-6 w-6 text-amber-500 shrink-0 mt-1" />
+              <div className="flex items-start gap-4 pt-6 border-t border-slate-200">
+                <div className="bg-blue-50 p-2.5 rounded-xl text-blue-600 mt-1 shadow-sm">
+                  <Clock className="h-5 w-5 shrink-0" />
+                </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg">Opening Hours</h3>
-                  <p className="text-slate-400 mt-1">Monday - Saturday: 9:00 AM - 6:00 PM</p>
-                  <p className="text-amber-500 text-sm font-medium mt-1">Sunday Closed</p>
+                  <h3 className="text-slate-900 font-bold text-lg">Opening Hours</h3>
+                  <p className="text-slate-600 mt-1 text-sm font-medium">Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                  <p className="text-rose-500 text-xs font-bold uppercase tracking-wider mt-1.5 bg-rose-50 border border-rose-100 px-2 py-0.5 rounded-md w-fit shadow-sm">Sunday Closed</p>
                 </div>
               </div>
             </div>
 
             {/* Google Map Embed */}
-            <div className="rounded-2xl overflow-hidden h-[250px] border border-slate-800 shadow-lg">
+            <div className="rounded-2xl overflow-hidden h-[250px] border border-slate-200 shadow-md">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7925526978187!2d72.86872537596068!3d19.07284425206927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8cf9d0b89cf%3A0x6270b208eb6793a3!2sBandra%20Kurla%20Complex%2C%20Bandra%20East%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1709228471234!5m2!1sen!2sin" 
+                src="<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d101852.74505444727!2d83.07470262050632!3d25.53514474800883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3991df3d42931c9b%3A0x58ce05a762478342!2sIIFL%20Securities%20Online%20Trading%2C%20West%20market%2C%20Saidpur%2C%20Uttar%20Pradesh%20233304!3m2!1d25.5351438!2d83.21889809999999!4m5!1s0x3991df3d42931c9b%3A0x58ce05a762478342!2sIIFL%20Securities%20Online%20Trading%2C%20West%20market%2C%20Saidpur%2C%20Uttar%20Pradesh%20233304!3m2!1d25.5351438!2d83.21889809999999!5e1!3m2!1sen!2sin!4v1782306002675!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
                 style={{border:0}} 
                 allowFullScreen="" 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale hover:grayscale-0 transition-all duration-500"
+                className="hover:scale-[1.01] transition-transform duration-500"
               ></iframe>
             </div>
 
@@ -126,17 +169,17 @@ export default function Contact() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="bg-slate-900 border border-slate-800 rounded-3xl p-8 lg:p-10 shadow-2xl relative"
+            className="bg-white border border-slate-200 rounded-3xl p-8 lg:p-10 shadow-xl relative"
           >
             {/* Form Glow */}
-            <div className="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl"></div>
 
-            <h3 className="text-2xl font-bold text-white mb-6">Request a Callback</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Request a Callback</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-300">Full Name</label>
+                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Full Name</label>
                   <input
                     type="text"
                     name="name"
@@ -144,11 +187,11 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="John Doe"
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-slate-600"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-400 text-sm shadow-inner"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-300">Phone Number</label>
+                  <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Phone Number</label>
                   <input
                     type="tel"
                     name="phone"
@@ -156,13 +199,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="+91 98765..."
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-slate-600"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-400 text-sm shadow-inner"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-slate-300">Email Address</label>
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Email Address</label>
                 <input
                   type="email"
                   name="email"
@@ -170,19 +213,19 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="john@example.com"
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-slate-600"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-400 text-sm shadow-inner"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-slate-300">Service Interested In</label>
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Service Interested In</label>
                 <select
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-semibold focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm shadow-inner cursor-pointer"
                 >
-                  <option value="" className="text-slate-500">Select a Service</option>
+                  <option value="" className="text-slate-400">Select a Service</option>
                   <option value="mutual-funds">Mutual Funds</option>
                   <option value="sip">SIP Planning</option>
                   <option value="stock-trading">Stock Trading</option>
@@ -191,31 +234,31 @@ export default function Contact() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-slate-300">Message (Optional)</label>
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Message (Optional)</label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
                   placeholder="Tell us about your financial goals..."
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all placeholder:text-slate-600 resize-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 font-medium focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-400 text-sm shadow-inner resize-none"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting || isSubmitted}
-                className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-4 rounded-xl transition-all transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold py-4 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-blue-600/10 hover:shadow-blue-600/20"
               >
                 {isSubmitting ? (
                   <span className="animate-pulse">Sending...</span>
                 ) : isSubmitted ? (
                   <>
-                    <CheckCircle className="h-5 w-5" /> Message Sent!
+                    <CheckCircle className="h-5 w-5 text-white" /> Message Sent!
                   </>
                 ) : (
                   <>
-                    Send Request <Send className="h-5 w-5" />
+                    Send Request <Send className="h-4 w-4" />
                   </>
                 )}
               </button>

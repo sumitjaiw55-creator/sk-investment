@@ -32,9 +32,9 @@ export default function SIPCalculator() {
     : 0;
 
   return (
-    <section id="calculator" className="py-20 bg-slate-950 relative overflow-hidden">
-       {/* Background Glow */}
-       <div className="absolute top-1/2 left-0 -z-10 w-[30%] h-[30%] bg-amber-500/5 blur-[100px] rounded-full"></div>
+    <section id="calculator" className="py-24 bg-white relative overflow-hidden text-slate-900">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-0 -z-10 w-[30%] h-[30%] bg-blue-100/50 blur-[100px] rounded-full"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -44,12 +44,13 @@ export default function SIPCalculator() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">
-            SIP <span className="text-amber-500">Calculator</span>
+          <span className="text-blue-600 font-bold tracking-wider uppercase text-sm">Compounding Magic</span>
+          <h2 className="text-4xl font-extrabold text-slate-900 mb-4 mt-2 tracking-tight">
+            SIP <span className="text-blue-600">Calculator</span>
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed">
             Calculate your potential wealth with systematic investment planning.
-            See the magic of compounding.
+            See the magic of compounding in real-time.
           </p>
         </motion.div>
 
@@ -61,19 +62,21 @@ export default function SIPCalculator() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl"
+            className="bg-slate-50 border border-slate-200 rounded-3xl p-8 shadow-sm"
           >
             <div className="flex items-center gap-3 mb-8">
-              <Calculator className="h-8 w-8 text-amber-500" />
-              <h3 className="text-2xl font-bold text-white">Investment Details</h3>
+              <div className="bg-blue-100 p-2.5 rounded-xl">
+                <Calculator className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 tracking-tight">Investment Details</h3>
             </div>
 
             <div className="space-y-8">
               {/* Monthly Investment Slider */}
               <div>
-                <div className="flex justify-between mb-4">
-                  <label className="text-slate-300 font-semibold">Monthly Investment</label>
-                  <span className="text-amber-500 font-bold bg-amber-500/10 px-3 py-1 rounded-lg">
+                <div className="flex justify-between items-center mb-4">
+                  <label className="text-slate-700 font-bold text-sm">Monthly Investment</label>
+                  <span className="text-blue-600 font-extrabold bg-blue-50 border border-blue-100 px-3 py-1 rounded-xl text-sm shadow-sm">
                     ₹{monthlyInvestment.toLocaleString()}
                   </span>
                 </div>
@@ -84,9 +87,9 @@ export default function SIPCalculator() {
                   step="500"
                   value={monthlyInvestment}
                   onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500 hover:accent-amber-400 transition-all"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 hover:accent-blue-500 transition-all"
                 />
-                <div className="flex justify-between text-xs text-slate-500 mt-2">
+                <div className="flex justify-between text-xs text-slate-400 font-bold mt-2">
                   <span>₹500</span>
                   <span>₹1,00,000</span>
                 </div>
@@ -94,9 +97,9 @@ export default function SIPCalculator() {
 
               {/* Expected Return Slider */}
               <div>
-                <div className="flex justify-between mb-4">
-                  <label className="text-slate-300 font-semibold">Expected Return (p.a.)</label>
-                  <span className="text-amber-500 font-bold bg-amber-500/10 px-3 py-1 rounded-lg">
+                <div className="flex justify-between items-center mb-4">
+                  <label className="text-slate-700 font-bold text-sm">Expected Return (p.a.)</label>
+                  <span className="text-indigo-600 font-extrabold bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-xl text-sm shadow-sm">
                     {expectedReturn}%
                   </span>
                 </div>
@@ -107,9 +110,9 @@ export default function SIPCalculator() {
                   step="0.5"
                   value={expectedReturn}
                   onChange={(e) => setExpectedReturn(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500 hover:accent-amber-400 transition-all"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 hover:accent-blue-500 transition-all"
                 />
-                <div className="flex justify-between text-xs text-slate-500 mt-2">
+                <div className="flex justify-between text-xs text-slate-400 font-bold mt-2">
                   <span>1%</span>
                   <span>30%</span>
                 </div>
@@ -117,9 +120,9 @@ export default function SIPCalculator() {
 
               {/* Time Period Slider */}
               <div>
-                <div className="flex justify-between mb-4">
-                  <label className="text-slate-300 font-semibold">Time Period</label>
-                  <span className="text-amber-500 font-bold bg-amber-500/10 px-3 py-1 rounded-lg">
+                <div className="flex justify-between items-center mb-4">
+                  <label className="text-slate-700 font-bold text-sm">Time Period</label>
+                  <span className="text-sky-600 font-extrabold bg-sky-50 border border-sky-100 px-3 py-1 rounded-xl text-sm shadow-sm">
                     {timePeriod} Years
                   </span>
                 </div>
@@ -130,9 +133,9 @@ export default function SIPCalculator() {
                   step="1"
                   value={timePeriod}
                   onChange={(e) => setTimePeriod(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500 hover:accent-amber-400 transition-all"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 hover:accent-blue-500 transition-all"
                 />
-                <div className="flex justify-between text-xs text-slate-500 mt-2">
+                <div className="flex justify-between text-xs text-slate-400 font-bold mt-2">
                   <span>1 Year</span>
                   <span>30 Years</span>
                 </div>
@@ -149,37 +152,39 @@ export default function SIPCalculator() {
             className="space-y-6"
           >
             {/* Main Result Card */}
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+            <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
               
               <div className="flex items-center gap-3 mb-8 relative z-10">
-                <TrendingUp className="h-8 w-8 text-amber-500" />
-                <h3 className="text-2xl font-bold text-white">Projected Returns</h3>
+                <div className="bg-emerald-50 p-2.5 rounded-xl">
+                  <TrendingUp className="h-6 w-6 text-emerald-600" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 tracking-tight">Projected Returns</h3>
               </div>
 
               <div className="space-y-4 relative z-10">
-                <div className="bg-slate-950/50 rounded-xl p-4 border border-slate-800">
-                  <div className="text-sm text-slate-400 mb-1">Total Invested Amount</div>
-                  <div className="text-2xl font-bold text-white">₹{results.totalInvested.toLocaleString()}</div>
+                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/60">
+                  <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Total Invested Amount</div>
+                  <div className="text-2xl font-black text-slate-900">₹{results.totalInvested.toLocaleString()}</div>
                 </div>
 
-                <div className="bg-slate-950/50 rounded-xl p-4 border border-slate-800">
-                  <div className="text-sm text-slate-400 mb-1">Estimated Returns</div>
-                  <div className="text-2xl font-bold text-amber-400">₹{results.estimatedReturns.toLocaleString()}</div>
+                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/60">
+                  <div className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Estimated Returns</div>
+                  <div className="text-2xl font-black text-emerald-600">₹{results.estimatedReturns.toLocaleString()}</div>
                 </div>
 
-                <div className="bg-amber-500 rounded-xl p-5 text-slate-900 mt-4 shadow-lg shadow-amber-500/20">
-                  <div className="text-sm font-semibold opacity-90 mb-1">Total Value</div>
-                  <div className="text-4xl font-extrabold">₹{results.totalValue.toLocaleString()}</div>
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-6 text-white mt-6 shadow-lg shadow-blue-600/20 transform hover:scale-[1.01] transition-transform duration-300">
+                  <div className="text-xs font-bold opacity-80 uppercase tracking-wider mb-1">Total Value</div>
+                  <div className="text-4xl font-black">₹{results.totalValue.toLocaleString()}</div>
                 </div>
               </div>
             </div>
 
             {/* Visual Bars */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm">
               <div className="flex justify-between items-center mb-4">
-                <span className="text-slate-300 font-semibold">Wealth Growth</span>
-                <span className="text-green-400 font-bold flex items-center gap-1">
+                <span className="text-slate-800 font-bold text-sm">Wealth Breakup</span>
+                <span className="text-emerald-600 font-bold text-sm flex items-center gap-1 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-xl shadow-sm">
                    <TrendingUp className="h-4 w-4" />
                    {returnPercentage.toFixed(0)}% Up
                 </span>
@@ -188,32 +193,31 @@ export default function SIPCalculator() {
               <div className="space-y-5">
                 {/* Investment Bar */}
                 <div>
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="text-slate-400">Invested</span>
-                    <span className="text-white font-medium">₹{results.totalInvested.toLocaleString()}</span>
+                  <div className="flex justify-between text-xs font-bold mb-2">
+                    <span className="text-slate-500 uppercase tracking-wider">Invested Principal</span>
+                    <span className="text-slate-900">₹{results.totalInvested.toLocaleString()}</span>
                   </div>
-                  <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
-                      animate={{ width: "100%" }} // Base width
-                      className="h-full bg-blue-600 rounded-full"
+                      animate={{ width: "100%" }}
+                      className="h-full bg-slate-400 rounded-full"
                     />
                   </div>
                 </div>
 
                 {/* Returns Bar */}
                 <div>
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="text-slate-400">Profit Gained</span>
-                    <span className="text-amber-500 font-medium">₹{results.estimatedReturns.toLocaleString()}</span>
+                  <div className="flex justify-between text-xs font-bold mb-2">
+                    <span className="text-slate-500 uppercase tracking-wider">Profit Growth</span>
+                    <span className="text-emerald-600">₹{results.estimatedReturns.toLocaleString()}</span>
                   </div>
-                  <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
                     <motion.div
-                       // Simple visual representation logic
                       initial={{ width: 0 }}
                       animate={{ width: `${Math.min(returnPercentage, 100)}%` }}
                       transition={{ duration: 1 }}
-                      className="h-full bg-amber-500 rounded-full shadow-[0_0_10px_rgba(245,158,11,0.5)]"
+                      className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.3)]"
                     />
                   </div>
                 </div>
@@ -221,9 +225,9 @@ export default function SIPCalculator() {
             </div>
 
             {/* CTA Button */}
-            <button className="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-amber-500/50 text-white py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 group">
+            <button className="w-full bg-white hover:bg-slate-50 border border-slate-300 hover:border-blue-500 text-slate-800 hover:text-blue-600 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 group shadow-sm hover:shadow">
               Start this SIP Now
-              <ArrowRight className="h-5 w-5 text-amber-500 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="h-4 w-4 text-blue-600 group-hover:translate-x-1 transition-transform" />
             </button>
 
           </motion.div>
