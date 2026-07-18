@@ -1,13 +1,14 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
   PieChart, 
   TrendingUp, 
-  BarChart3, 
+  LineChart, 
   ShieldCheck, 
   ArrowRight, 
-  CheckCircle2,
-  LineChart
+  Check,
+  Presentation
 } from 'lucide-react';
 
 export default function Services() {
@@ -20,123 +21,130 @@ export default function Services() {
       description: "Build long-term wealth with expert-curated mutual fund portfolios tailored to your financial goals.",
       features: [
         "Goal-based Planning (Education, Retirement, Home)",
-        "Risk Profiling & Asset Allocation",
-        "Access to Top Performing AMCs",
-        "Regular Portfolio Rebalancing"
-      ],
-      color: "text-blue-600",
-      bg: "bg-blue-50"
+        "Risk Profiling & Asset Allocation Matrix",
+        "Access to Top Performing AMCs via IIFL",
+        "Regular Portfolio Rebalancing Support"
+      ]
     },
     {
       icon: TrendingUp,
-      title: "SIP (Systematic Investment Plan)",
-      description: "Start small and grow big. The most disciplined way to invest in the market and beat inflation.",
+      title: "SIP (Systematic Investment)",
+      description: "Start small and grow big. The most disciplined way to invest in the market systematically and beat inflation.",
       features: [
         "Start with as low as ₹500/month",
-        "Rupee Cost Averaging Benefit",
-        "Automated Monthly Investments",
-        "Flexible Pause/Stop Options"
-      ],
-      color: "text-indigo-600",
-      bg: "bg-indigo-50"
+        "Rupee Cost Averaging Advantage",
+        "Automated Monthly Investments Flow",
+        "Flexible Pause/Stop Management Options"
+      ]
     },
     {
       icon: LineChart,
       title: "Stock Market Trading",
-      description: "Trade in Equity, Derivatives, and Commodities with our IIFL Partnership advantage.",
+      description: "Trade in Equity, Derivatives (F&O), and Commodities with our official IIFL Partnership advantage.",
       features: [
         "Powered by IIFL Securities (Institutional Grade)",
-        "Free Demat Account Opening",
-        "Daily Research & Tips via WhatsApp",
-        "Advanced Mobile App & Terminal Access"
-      ],
-      color: "text-sky-600",
-      bg: "bg-sky-50"
+        "Free Demat & Trading Account Opening",
+        "Daily Technical Research & Advisory Support",
+        "Advanced Mobile Trading App Terminal Access"
+      ]
     },
     {
       icon: ShieldCheck,
       title: "Portfolio Health Checkup",
-      description: "Already invested elsewhere? We analyze your existing portfolio to fix bad investments.",
+      description: "Already invested elsewhere? Our SEBI registered desk analyzes your existing assets to fix underperforming funds.",
       features: [
-        "Review of Underperforming Funds",
-        "Expense Ratio Optimization",
-        "Tax Harvesting Strategies",
-        "Consolidated View of All Assets"
-      ],
-      color: "text-emerald-600",
-      bg: "bg-emerald-50"
+        "Review of Underperforming Stocks/Funds",
+        "Expense Ratio & Portfolio Leakage Optimization",
+        "Tax Harvesting & Smart Restructuring",
+        "Consolidated View of All Financial Assets"
+      ]
     }
   ];
 
   return (
-    <div className="bg-white text-slate-900 min-h-screen pt-20">
+    <div className="bg-white text-[#07473a] min-h-screen font-sans">
       
-      {/* 1. Header Section */}
-      <section className="py-20 relative overflow-hidden bg-slate-50">
-        {/* Background Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-100/50 blur-[120px] rounded-full pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-black mb-6 tracking-tight text-slate-900"
-          >
-            Comprehensive <span className="text-blue-600">Wealth Solutions</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium"
-          >
-            Whether you are a conservative saver or an aggressive trader, 
-            we have the right financial tools and expertise for you.
-          </motion.p>
+      {/* 1. HEADER SECTION (Finzo Style Off-White Banner) */}
+      <section className="py-24 relative overflow-hidden bg-[#f6f7f6] px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col space-y-4">
+          {/* Section Badge */}
+          <div>
+            <span className="inline-block border border-gray-200 bg-white text-[#07473a] text-xs font-bold tracking-wider uppercase px-4 py-1.5 rounded-full shadow-sm">
+              WHAT WE PROVIDE
+            </span>
+          </div>
+          
+          {/* Main Title Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
+            <div className="lg:col-span-7">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#07473a] leading-[1.1]"
+              >
+                Comprehensive <br />
+                Financial Solutions
+              </motion.h1>
+            </div>
+            <div className="lg:col-span-5 pb-1">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="text-slate-500 text-sm sm:text-base leading-relaxed max-w-md"
+              >
+                Whether you are a conservative saver or an aggressive derivatives trader, we offer certified financial tools and deep market expertise.
+              </motion.p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 2. Main Services Grid */}
-      <section className="py-24 px-4 bg-white">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+      {/* 2. MAIN SERVICES GRID SECTION */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white border border-slate-200 rounded-3xl p-8 hover:border-blue-500/30 transition-all duration-300 group shadow-sm hover:shadow-xl hover:shadow-blue-600/5"
+              transition={{ delay: index * 0.05 }}
+              className="group border border-gray-100 bg-white rounded-sm p-8 flex flex-col sm:flex-row items-start gap-6 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer"
             >
-              <div className="flex flex-col sm:flex-row items-start gap-6">
-                {/* Icon block with smooth internal animations */}
-                <div className={`${service.bg} p-4 rounded-2xl border border-slate-100 group-hover:bg-blue-600 group-hover:border-blue-600 transition-all duration-300 shrink-0 group-hover:scale-105 shadow-sm`}>
-                  <service.icon className={`h-8 w-8 ${service.color} group-hover:text-white transition-colors duration-300`} />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-200">
+              {/* Icon Container Block with exact Finzo hover mechanics */}
+              <div className="w-16 h-16 bg-[#f4f5f3] rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-[#07473a]">
+                <service.icon className="w-6 h-6 text-slate-700 transition-colors duration-300 group-hover:text-[#b3f29f]" />
+              </div>
+              
+              <div className="flex-1 flex flex-col justify-between h-full min-h-[280px]">
+                <div>
+                  <h3 className="text-2xl font-bold text-[#07473a] tracking-tight mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-slate-600 mb-6 leading-relaxed text-sm font-medium">
+                  <p className="text-slate-500 leading-relaxed text-sm mb-6">
                     {service.description}
                   </p>
                   
-                  {/* Detailed Features List */}
-                  <ul className="space-y-3 border-t border-slate-100 pt-5">
+                  {/* Features Checklist Grid */}
+                  <ul className="space-y-3 border-t border-gray-100 pt-5">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-3 text-slate-700 text-sm font-medium">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0" />
-                        {feature}
+                      <li key={idx} className="flex items-start space-x-3 text-slate-600 text-xs sm:text-sm">
+                        <div className="w-5 h-5 bg-[#b3f29f] text-[#07473a] rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 stroke-[3]" />
+                        </div>
+                        <span className="leading-snug">{feature}</span>
                       </li>
                     ))}
                   </ul>
+                </div>
 
-                  <button 
-                    onClick={() => navigate('/contact')}
-                    className="mt-8 flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all text-sm group/btn"
-                  >
-                    Get Started <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5" />
-                  </button>
+                {/* Micro Action Trigger Button */}
+                <div className="pt-6">
+                  <div className="w-full border border-gray-100 rounded-full py-2.5 px-5 flex items-center justify-between transition-all duration-300 bg-white group-hover:bg-[#b3f29f] group-hover:border-[#b3f29f]">
+                    <span className="text-xs sm:text-sm font-bold text-[#07473a]">Get Started Now</span>
+                    <ArrowRight className="w-4 h-4 text-[#07473a] transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -144,78 +152,81 @@ export default function Services() {
         </div>
       </section>
 
-      {/* 3. The IIFL Advantage Strip */}
-      <section className="py-20 bg-slate-50 border-y border-slate-200/60">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-               initial={{ opacity: 0, x: -50 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true }}
-            >
-              <div className="inline-block bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-xs font-bold mb-4 border border-blue-100 tracking-wider">
-                POWERED BY IIFL SECURITIES
+      {/* 3. THE IIFL ADVANTAGE STRIP SECTION */}
+      <section className="py-24 bg-[#f6f7f6] border-y border-gray-100 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-7 flex flex-col space-y-6"
+          >
+            <div>
+              <span className="inline-block border border-green-200 bg-[#b3f29f]/20 text-[#07473a] text-xs font-bold tracking-wider uppercase px-4 py-1.5 rounded-full shadow-sm">
+                POWERED BY IIFL SECURITIES PARTNERSHIP
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#07473a] leading-[1.15]">
+              Institutional Grade Trading <br /> for Retail Investors
+            </h2>
+            <p className="text-slate-500 text-sm sm:text-base leading-relaxed max-w-xl">
+              We are an authorized network partner of IIFL. This deep integration allows you to experience the dedicated, custom local support of SK Investment backed by the technological infrastructure of an Indian market leader.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md pt-2">
+              <div className="bg-white p-5 rounded-sm border border-gray-100 shadow-sm">
+                <div className="text-2xl font-bold text-[#07473a] mb-1">SEBI Registered</div>
+                <div className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Credible Advisory Desk</div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-black mb-6 text-slate-900 tracking-tight leading-tight">
-                Institutional Grade Trading <br /> for Retail Investors
-              </h2>
-              <p className="text-slate-600 mb-8 text-base font-medium leading-relaxed">
-                We are an authorized partner of IIFL. This means you get the personal support of SK Investment combined with the technology of a market giant.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm transform hover:scale-[1.02] transition-transform duration-300">
-                  <div className="font-black text-blue-600 text-2xl mb-1">4.5/5</div>
-                  <div className="text-slate-500 text-xs font-bold uppercase tracking-wider">App Rating</div>
-                </div>
-                <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm transform hover:scale-[1.02] transition-transform duration-300">
-                  <div className="font-black text-blue-600 text-2xl mb-1">10M+</div>
-                  <div className="text-slate-500 text-xs font-bold uppercase tracking-wider">Trusted Users</div>
-                </div>
+              <div className="bg-white p-5 rounded-sm border border-gray-100 shadow-sm">
+                <div className="text-2xl font-bold text-[#07473a] mb-1">60% Brokerage</div>
+                <div className="text-slate-400 text-[10px] font-bold uppercase tracking-wider">Competitive Franchise Core</div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
 
-            <motion.div
-               initial={{ opacity: 0, x: 50 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true }}
-               className="relative"
-            >
-              {/* Refined Representation of Trading App interface */}
-              <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xl relative z-10">
-                <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
-                  <div className="text-slate-900 font-extrabold tracking-tight">IIFL Markets Platform</div>
-                  <BarChart3 className="text-emerald-500" />
-                </div>
-                <div className="space-y-4">
-                  <div className="h-2 bg-slate-100 rounded w-3/4"></div>
-                  <div className="h-2 bg-slate-100 rounded w-1/2"></div>
-                  <div className="h-24 bg-blue-50/50 rounded-xl mt-4 border border-blue-200/60 border-dashed flex items-center justify-center text-blue-600 font-semibold text-sm">
-                    Advanced Live Charting Tools
-                  </div>
+          {/* Interactive UI Display Mockup */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5 relative w-full flex justify-center lg:justify-end"
+          >
+            <div className="bg-white rounded-sm p-6 border border-gray-100 shadow-xl w-full max-w-[400px] relative z-10">
+              <div className="flex justify-between items-center mb-6 border-b border-gray-50 pb-4">
+                <div className="text-[#07473a] font-bold text-sm sm:text-base tracking-tight">SK Investment Hub Interface</div>
+                <Presentation className="text-[#07473a] w-5 h-5" />
+              </div>
+              <div className="space-y-4">
+                <div className="h-2 bg-slate-50 rounded w-3/4"></div>
+                <div className="h-2 bg-slate-50 rounded w-1/2"></div>
+                <div className="h-28 bg-[#b3f29f]/10 rounded-sm mt-4 border border-[#b3f29f]/30 border-dashed flex items-center justify-center text-[#07473a] font-bold text-xs sm:text-sm">
+                  Advanced Live Analytics Terminal
                 </div>
               </div>
-              
-              {/* Geometric Blue Background Decor Element */}
-              <div className="absolute -bottom-4 -right-4 w-full h-full bg-blue-600/5 rounded-2xl -z-0 border border-blue-500/10"></div>
-            </motion.div>
-          </div>
+            </div>
+            <div className="absolute -bottom-3 -right-3 w-full h-full bg-[#07473a]/5 rounded-sm -z-0 max-w-[400px]"></div>
+          </motion.div>
+
         </div>
       </section>
 
-      {/* 4. Bottom CTA */}
-      <section className="py-24 text-center px-4 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
-        <div className="relative z-10">
-          <h2 className="text-3xl font-extrabold mb-4 text-slate-900 tracking-tight">Not sure where to start?</h2>
-          <p className="text-slate-600 mb-8 max-w-xl mx-auto text-sm md:text-base font-medium leading-relaxed">
-            Talk to our experts. We will analyze your financial health and suggest the best plan for you.
+      {/* 4. FINAL CTA SECTION */}
+      <section className="py-24 text-center px-4 sm:px-6 lg:px-8 bg-white relative">
+        <div className="max-w-4xl mx-auto relative z-10 flex flex-col items-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#07473a]">
+            Not sure where to start?
+          </h2>
+          <p className="text-slate-500 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed font-medium">
+            Schedule a session with our certified desks. We will carefully analyze your ongoing asset parameters and suggest a balanced, optimized growth path.
           </p>
           <button 
             onClick={() => navigate('/contact')}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white px-8 py-4 rounded-xl font-bold text-base transition-all transform hover:scale-[1.04] active:scale-[0.98] shadow-lg shadow-blue-600/10 hover:shadow-blue-600/20"
+            className="bg-[#b3f29f] text-[#07473a] px-8 py-4 rounded-full font-bold flex items-center space-x-2 hover:bg-[#a1e08d] transition-all transform hover:scale-[1.03] active:scale-[0.98] shadow-md"
           >
-            Book Free Consultation
+            <span>Book Free Consultation</span>
+            <span className="w-1.5 h-1.5 bg-[#07473a] rounded-full inline-block"></span>
           </button>
         </div>
       </section>
